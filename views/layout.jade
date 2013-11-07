@@ -1,0 +1,22 @@
+doctype 5
+html
+	head
+		title= title
+		link(rel='stylesheet', href='/stylesheets/bootstrap.css')
+		link(rel='stylesheet', href='/stylesheets/style.css')
+	body
+		div.navbar.navbar-inverse.navbar-fixed-top
+			div.container
+				div.navbar-header
+					a(href='./').navbar-brand insistX
+				div(role='navigation').collapse.navbar-collapse
+					ul.nav.navbar-nav
+						li
+							a(href='/') 首页
+						li
+							a(href='/login') 登陆
+						li
+							a(href='/reg') 注册
+		block content
+		script(type='text/javascript', href='/javascripts/bootstrap.min.js')
+
