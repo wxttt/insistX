@@ -36,4 +36,8 @@ exports.logout = function(req, res) {
 
 exports.tv = function(req, res){
     res.render('tv/tv', {title: 'TV Page'});
+};
+
+exports.demos = function(req, res){
+    res.render('tv/demos', {title: 'Demo Page'});
 }
