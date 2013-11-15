@@ -3,9 +3,10 @@
  */
 (function(){
 
-    var _body = document.body;
+    var _body = document.body,
+        _cnt = document.getElementsByClassName('m-slide')[0];
 
-    _body.addEventListener('click', function(_event){
+    _cnt.addEventListener('click', function(_event){
         var _midEl = document.getElementsByClassName('z-crt')[0],
             _leftEl = document.getElementsByClassName('z-left')[0],
             _rightEl = document.getElementsByClassName('z-right')[0];
@@ -20,8 +21,6 @@
         delClass(_rightEl, 'z-small');
         delClass(_rightEl, 'z-right');
         addClass(_rightEl, 'z-crt');
-
-
     },false)
 
 

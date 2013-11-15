@@ -40,4 +40,8 @@ exports.tv = function(req, res){
 
 exports.demos = function(req, res){
     res.render('tv/demos', {title: 'Demo Page'});
+};
+
+exports.testFlash = function(req, res){
+    res.render('tv/testFlash', {title: 'flash test page'});
 }
