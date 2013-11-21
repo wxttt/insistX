@@ -6,8 +6,20 @@
     var _body = document.body,
         _slide = document.getElementsByClassName('m-slide')[0],
         _hex = document.getElementsByClassName('m-hex')[0],
-        _ctrl = document.getElementsByClassName(('m-ctrl'))[0];
+        _ctrl = document.getElementsByClassName(('m-ctrl'))[0],
+        _xhr = new XMLHttpRequest();
 
+    //ajax 请求
+    $.ajax({
+        url: "/book",
+        dataType: "json"
+    }).done(function(data) {
+           console.log(data);
+        });
+
+
+
+    //add event listener
     _slide.addEventListener('click', function(_event){
         var _midEl = document.getElementsByClassName('z-crt')[0],
             _leftEl = document.getElementsByClassName('z-left')[0],

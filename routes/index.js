@@ -1,4 +1,5 @@
-
+var http = require('http');
+var StringDecoder = require('string_decoder').StringDecoder;
 /*
  * GET home page.
  */
@@ -44,4 +45,20 @@ exports.demos = function(req, res){
 
 exports.testFlash = function(req, res){
     res.render('tv/testFlash', {title: 'flash test page'});
+};
+
+exports.book = function(req, res){
+    var options = {
+        hostname: 'movie.zoneke.com',
+        port: 80,
+        path: '/tags/81/',
+        method: 'GET'
+    };
+
+    var req2 = http.request(options, function(res2) {
+        res2.pipe(res);
+    });
+
+    req.pipe(req2);
+
 }
