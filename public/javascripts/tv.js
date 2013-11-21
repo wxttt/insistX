@@ -11,7 +11,7 @@
 
     //ajax 请求
     $.ajax({
-        url: "/book",
+        url: "/movie",
         dataType: "json"
     }).done(function(data) {
            console.log(data);

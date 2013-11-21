@@ -1,0 +1,79 @@
+//virables
+@lightGrey: #e6e6e6;
+@grey: #cacaca;
+@black: #000000;
+@brown: #A7978B;
+@fontWhite: #D6D3BF;
+@bgBrown: #965B40; //body的背景色
+
+
+//mixin
+.box-shadow(@x, @y, @z, @color){
+  box-shadow: @x @y @z @color;
+}
+
+.f-clearfix{
+  &:after{
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+  }
+}
+
+//style
+body{
+  background-image: url("/images/brown_bg.jpg");
+  background-size: cover;
+  color: @fontWhite;
+}
+
+.m-container{
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+  padding-right: 4px;
+  padding-bottom: 4px;
+}
+
+.m-header{
+  height: 50px;
+  background-color: rgba(0,0,0,0.8);
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  text-align: center;
+  font-size: 24px;
+  line-height: 50px;
+}
+
+.m-mid{
+  background-color: rgba(0,0,0,0.4);
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  position: absolute;
+  top: 50px;
+  bottom:0;
+  left:0;
+  right:0;
+}
+
+
+.m-item{
+  height: 200px;
+  margin-left: 4px;
+  margin-top: 4px;
+  float: left;
+  img{
+    height: 200px;
+    border-bottom-left-radius: 10px;
+    float: left;
+  }
+  .m-des{
+    height: 200px;
+    width: 100px;
+    background-color: @brown;
+    border-top-right-radius: 10px;
+    float: left;
+  }
+}

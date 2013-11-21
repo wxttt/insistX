@@ -47,7 +47,7 @@ exports.testFlash = function(req, res){
     res.render('tv/testFlash', {title: 'flash test page'});
 };
 
-exports.book = function(req, res){
+exports.movie = function(req, res){
     var options = {
         hostname: 'movie.zoneke.com',
         port: 80,
@@ -61,4 +61,8 @@ exports.book = function(req, res){
 
     req.pipe(req2);
 
+};
+
+exports.list = function(req, res){
+    res.render('tv/list', {title: '资源列表'})
 }
