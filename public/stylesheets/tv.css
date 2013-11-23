@@ -22,6 +22,7 @@
   background-color: #cacaca;
 }
 .m-slide {
+  display: none;
   width: 1000px;
   height: 600px;
   border: 1px solid #e6e6e6;
@@ -82,7 +83,6 @@
   bottom: 0;
 }
 .m-hex {
-  display: none;
   width: 640px;
   height: 408px;
   position: absolute;
