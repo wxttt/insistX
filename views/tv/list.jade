@@ -4,6 +4,7 @@ html(ng-app)
 		title= title
 		link(rel='stylesheet', href='/stylesheets/reset.css')
 		link(rel='stylesheet', href='/stylesheets/list.css')
+		link(rel='stylesheet', href='/stylesheets/font-awesome/css/font-awesome.min.css')
 		script(type='text/javascript', src='http://cdn.staticfile.org/angular.js/1.2.1/angular.min.js')
 		script(type='text/javascript', src='/javascripts/app.js')
 	body
@@ -16,10 +17,13 @@ html(ng-app)
 						div(ng-class="['m-des', items.color]")
 							h3	{{items.name}}
 							p	{{items.director}}
+							p.u-play
+								i.fa.fa-play
 				ul.m-list.f-clearfix.m-list-2
 					li.m-item(ng-repeat="items in data_2")
 						img(ng-src="{{items.picture_url}}")
 						div(ng-class="['m-des', items.color]")
 							h3    {{items.name}}
 							p    {{items.director}}
-
+							p.u-play
+								i.fa.fa-play
