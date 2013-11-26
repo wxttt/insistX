@@ -45,6 +45,7 @@ app.get('/tv', routes.tv);
 app.get('/demos', routes.demos);
 app.get('/testFlash', routes.testFlash);
 app.get('/movie', routes.movie);
+app.get('/mdata', routes.mdata);
 app.get('/list', routes.list);
 
 http.createServer(app).listen(app.get('port'), function(){

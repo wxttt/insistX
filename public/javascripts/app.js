@@ -1,6 +1,18 @@
 function tvCtrl($scope, $http){
     $scope.name = '分类';
-    $scope.colors = ['green', 'black', 'brown']
+    $scope.colors = ['green', 'black', 'brown'];
+
+    $scope.playVideo = function($event){
+        var el = $event.srcElement;
+        var id = el.dataset.id;
+        console.log(id);
+        $http({
+            method: 'get',
+            url: '/mdata?id='+id+'/'
+        }).success(function(data){
+            console.log(data);
+        })
+    }
 
     $http({
         method: 'get',

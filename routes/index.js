@@ -1,5 +1,5 @@
 var http = require('http');
-var StringDecoder = require('string_decoder').StringDecoder;
+var url = require('url');
 /*
  * GET home page.
  */
@@ -65,4 +65,22 @@ exports.movie = function(req, res){
 
 exports.list = function(req, res){
     res.render('tv/list', {title: '资源列表'})
+};
+
+exports.mdata = function(req, res){
+    var pathname = url.parse(req.url).query;
+    var id = pathname.split('=')[1];
+
+    var options = {
+        hostname: 'movie.zoneke.com',
+        port: 80,
+        path: '/api/v0/movies/'+ id,
+        method: 'GET'
+    };
+
+    var req2 = http.request(options, function(res2) {
+        res2.pipe(res);
+    });
+
+    req.pipe(req2);
 }
