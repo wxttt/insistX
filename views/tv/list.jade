@@ -1,30 +1,47 @@
 doctype 5
-html(ng-app)
+html(ng-app="tvApp")
 	head
 		title= title
 		link(rel='stylesheet', href='/stylesheets/reset.css')
 		link(rel='stylesheet', href='/stylesheets/list.css')
 		link(rel='stylesheet', href='/stylesheets/font-awesome/css/font-awesome.min.css')
-		script(type='text/javascript', src='http://cdn.staticfile.org/angular.js/1.2.1/angular.min.js')
+		script(type='text/javascript', src='http://cdn.staticfile.org/angular.js/1.1.5/angular.min.js')
 		script(type='text/javascript', src='/javascripts/app.js')
+		script(type='text/javascript', src='/javascripts/controllers.js')
 	body
-		div.m-container.f-clearfix(ng-controller="tvCtrl")
-			div.m-header.f-clearfix	{{name}}
-			div.m-mid.f-clearfix
-				ul.m-list.f-clearfix.m-list-1
-					li.m-item(ng-repeat="items in data_1")
-						img(ng-src="{{items.picture_url}}")
-						div(ng-class="['m-des', items.color]")
-							h3	{{items.name}}
-							p	{{items.director}}
-							p.u-play(ng-click="playVideo($event)", data-id="{{items.id}}")
-								i.fa.fa-play
-				ul.m-list.f-clearfix.m-list-2
-					li.m-item(ng-repeat="items in data_2")
-						img(ng-src="{{items.picture_url}}")
-						div(ng-class="['m-des', items.color]")
-							h3    {{items.name}}
-							p    {{items.director}}
-							p.u-play(ng-click="playVideo($event)", data-id="{{items.id}}")
-								i.fa.fa-play
+		div(ng-view)
+		script(type="text/ng-template",id="tags").
+			<div class="m-container f-clearfix">
+				<div class="m-header f-clearfix">
+					{{name}}
+				</div>
+				<div class="m-mid f-clearfix">
+					<ul class="m-list f-clearfix m-list-1">
+						<li class="m-item" ng-repeat="items in data_1">
+							<img ng-src="{{items.picture_url}}" />
+							<div ng-class="['m-des', items.color]">
+								<h3>{{items.name}}</h3>
+								<p>{{items.director}}</p>
+								<p class="u-play" ng-click="playVideo($event)", data-id="{{items.id}}">
+									<i class="fa fa-play"></i>
+								</p>
+							</div>
+						</li>
+					</ul>
+					<ul class="m-list f-clearfix m-list-2">
+						<li class="m-item" ng-repeat="items in data_2">
+							<img ng-src="{{items.picture_url}}" />
+							<div ng-class="['m-des', items.color]">
+								<h3>{{items.name}}</h3>
+								<p>{{items.director}}</p>
+								<p class="u-play" ng-click="playVideo($event)", data-id="{{items.id}}">
+									<i class="fa fa-play"></i>
+								</p>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		script(type="text/ng-template", id="play").
+			<video class="m-video" controls autoplay ng-src="{{playSrc}}"></video>
 

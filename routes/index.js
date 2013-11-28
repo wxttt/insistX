@@ -48,10 +48,13 @@ exports.testFlash = function(req, res){
 };
 
 exports.movie = function(req, res){
+    var query = url.parse(req.url).query;
+    var tagId = query.split('=')[1];
+
     var options = {
         hostname: 'movie.zoneke.com',
         port: 80,
-        path: '/tags/81/',
+        path: '/tags/' + tagId + '/',
         method: 'GET'
     };
 
@@ -68,8 +71,8 @@ exports.list = function(req, res){
 };
 
 exports.mdata = function(req, res){
-    var pathname = url.parse(req.url).query;
-    var id = pathname.split('=')[1];
+    var query = url.parse(req.url).query;
+    var id = query.split('=')[1];
 
     var options = {
         hostname: 'movie.zoneke.com',
