@@ -16,8 +16,8 @@ function tagsCtrl($scope, $http, $routeParams){
         url: '/movie?id='+ tagId
     })
     .success(function(data){
-        console.log('data is', data);
         var data = data.movies;
+        window.movieData = data;
         for(var i = 0; i < data.length; i++){
             (function(){
                 var index = parseInt(Math.random()*3);
@@ -56,6 +56,7 @@ function playCtrl($scope, $http, $routeParams){
             break;
         }
         $scope.playSrc = src;
+        console.log('playSrc', src);
     })
 }
 
@@ -74,5 +75,12 @@ window.onload = function(){
     window.turnRight = function(){
         list1.style["-webkit-transform"] = 'translate3d(0, 0, 0)';
         list2.style["-webkit-transform"] = 'translate3d(0, 0, 0)';
+    }
+
+    window.play = function(index){
+        if(!window.movieData)   return;
+        if(index >= window.movieData)   return;
+        var srcId = movieData[index].id;
+        location.href = '#/play/' + srcId;
     }
 }
