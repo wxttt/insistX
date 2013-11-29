@@ -2,7 +2,7 @@
 
 /* App Module */
 
-angular.module('tvApp',[]).
+angular.module('tvApp',['ngRoute']).
     config(['$routeProvider', function($routeProvider) {
         $routeProvider.
             when('/tags/:tagId', {templateUrl: 'tags', controller: tagsCtrl}).
