@@ -33,20 +33,25 @@ function searchCtrl($scope){
 
 }
 
-function playCtrl($scope, $http, $routeParams){
+function playCtrl($scope, $http, $routeParams, $sce){
     var srcId = $routeParams.srcId;
-    console.log('srcId is', srcId);
+    $scope.noSrc = false;
+    $scope.noVideo = false;
+    $scope.hasMp4 = false;
+    $scope.loading = true;
 
     $http({
         method: 'get',
         url: '/mdata?id='+srcId+'/'
     })
     .success(function(data){
-        console.log('data ', data);
-        var data = data;
-        var src;
+        var data = data, src;
+        console.log('data is', data);
+
         if(data.play_list.length == 0){
-            console.log('no src');
+            $scope.noSrc = true;
+            $scope.loading = false;
+            return;
         }
 
         for(var i = 0; i < data.play_list.length; i++){
@@ -55,8 +60,16 @@ function playCtrl($scope, $http, $routeParams){
             src = data.play_list[i].sources[0];
             break;
         }
-        $scope.playSrc = src;
-        console.log('playSrc', src);
+
+        if(src){
+            console.log('src', src);
+            $scope.loading = false;
+            $scope.hasMp4 = true;
+            $scope.playSrc = $sce.trustAsResourceUrl(src);
+        }else{
+            $scope.noVideo = true
+        }
+
     })
 }
 
@@ -82,5 +95,37 @@ window.onload = function(){
         if(index >= window.movieData)   return;
         var srcId = movieData[index].id;
         location.href = '#/play/' + srcId;
+    }
+
+    window.pause = function(){
+        var video = document.getElementsByTagName('video')[0];
+        if(!video)  return;
+        video.pause();
+    }
+
+    window.fastForward = function(){
+        var video = document.getElementsByTagName('video')[0];
+        if(!video)  return;
+
+        video.currentTime = video.currentTime + 10;
+    }
+
+    window.fastRewind = function(){
+        var video = document.getElementsByTagName('video')[0];
+        if(!video)  return;
+
+        video.currentTime = (video.currentTime - 10) > 0?
+            (video.currentTime - 10) : 0;
+    }
+
+    window.resume = function(){
+        playVideo();
+    }
+
+    window.playVideo = function(){
+        var video = document.getElementsByTagName('video')[0];
+        if(!video)  return;
+
+        video.play();
     }
 }

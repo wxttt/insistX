@@ -9,4 +9,5 @@ angular.module('tvApp',['ngRoute']).
             when('/search/:keyword', {templateUrl: 'tags', controller: searchCtrl}).
             when('/play/:srcId', {templateUrl: 'play', controller: playCtrl}).
             otherwise({redirectTo: '/'});
+
     }]);
