@@ -5,7 +5,8 @@ html(ng-app="tvApp")
 		link(rel='stylesheet', href='/stylesheets/reset.css')
 		link(rel='stylesheet', href='/stylesheets/list.css')
 		link(rel='stylesheet', href='/stylesheets/font-awesome/css/font-awesome.min.css')
-		script(type='text/javascript', src='http://cdn.staticfile.org/angular.js/1.1.5/angular.min.js')
+		script(type='text/javascript', src='/javascripts/angular-1.2.3/angular.min.js')
+		script(type='text/javascript', src='/javascripts/angular-1.2.3/angular-route.min.js')
 		script(type='text/javascript', src='/javascripts/app.js')
 		script(type='text/javascript', src='/javascripts/controllers.js')
 	body
@@ -44,4 +45,14 @@ html(ng-app="tvApp")
 			</div>
 		script(type="text/ng-template", id="play").
 			<video class="m-video" controls autoplay ng-src="{{playSrc}}"></video>
+			<div class="u-spin">
+				<div class="bar1"></div>
+				<div class="bar2"></div>
+				<div class="bar3"></div>
+				<div class="bar4"></div>
+				<div class="bar5"></div>
+				<div class="bar6"></div>
+				<div class="bar7"></div>
+				<div class="bar8"></div>
+			</div>
 
