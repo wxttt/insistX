@@ -40,13 +40,17 @@ function playCtrl($scope, $http, $routeParams, $sce){
     $scope.hasMp4 = false;
     $scope.loading = true;
 
+
+    $scope.canPlayThrough = function($event){
+        $scope.loading = false;
+    }
+
     $http({
         method: 'get',
         url: '/mdata?id='+srcId+'/'
     })
     .success(function(data){
         var data = data, src;
-        console.log('data is', data);
 
         if(data.play_list.length == 0){
             $scope.noSrc = true;
@@ -62,8 +66,7 @@ function playCtrl($scope, $http, $routeParams, $sce){
         }
 
         if(src){
-            console.log('src', src);
-            $scope.loading = false;
+
             $scope.hasMp4 = true;
             $scope.playSrc = $sce.trustAsResourceUrl(src);
         }else{
@@ -71,21 +74,25 @@ function playCtrl($scope, $http, $routeParams, $sce){
         }
 
     })
+
 }
 
 
 window.onload = function(){
-    var list1 = document.getElementsByClassName('m-list-1')[0],
-        list2 = document.getElementsByClassName('m-list-2')[0];
-
 
     //给猪头的全局方法
     window.turnLeft = function(){
+        var list1 = document.getElementsByClassName('m-list-1')[0],
+            list2 = document.getElementsByClassName('m-list-2')[0];
+
         list1.style["-webkit-transform"] = 'translate3d(-500px, 0, 0)';
         list2.style["-webkit-transform"] = 'translate3d(-500px, 0, 0)';
     }
 
     window.turnRight = function(){
+        var list1 = document.getElementsByClassName('m-list-1')[0],
+            list2 = document.getElementsByClassName('m-list-2')[0];
+
         list1.style["-webkit-transform"] = 'translate3d(0, 0, 0)';
         list2.style["-webkit-transform"] = 'translate3d(0, 0, 0)';
     }

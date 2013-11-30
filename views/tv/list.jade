@@ -9,6 +9,7 @@ html(ng-app="tvApp")
 		script(type='text/javascript', src='/javascripts/angular-1.2.3/angular-route.min.js')
 		script(type='text/javascript', src='/javascripts/app.js')
 		script(type='text/javascript', src='/javascripts/controllers.js')
+		script(type='text/javascript', src='/javascripts/modules.js')
 	body
 		div(ng-view)
 		script(type="text/ng-template",id="tags").
@@ -44,7 +45,7 @@ html(ng-app="tvApp")
 				</div>
 			</div>
 		script(type="text/ng-template", id="play").
-			<video class="m-video" controls autoplay ng-if="hasMp4" ng-src="{{playSrc}}"></video>
+			<video class="m-video" controls autoplay ng-if="hasMp4" ng-src="{{playSrc}}" ng-can-play-through="canPlayThrough($event)"></video>
 			<h1 ng-if = "noSrc">你播放的资源不存在</h1>
 			<div class="u-spin" ng-if = "loading">
 				<div class="bar1"></div>
