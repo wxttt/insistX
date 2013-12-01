@@ -34,7 +34,7 @@ function searchCtrl($scope){
 }
 
 function playCtrl($scope, $http, $routeParams, $sce){
-    var srcId = $routeParams.srcId;
+    var srcId = $routeParams.srcId,src, srcList, index;
     $scope.noSrc = false;
     $scope.noVideo = false;
     $scope.hasMp4 = false;
@@ -45,12 +45,25 @@ function playCtrl($scope, $http, $routeParams, $sce){
         $scope.loading = false;
     }
 
+    $scope.ended = function($event){
+        console.log( 'end end');
+        if(!srcList)
+            return;
+        if(index <= (srcList.length - 2)){
+            index++;
+            $scope.playSrc1 = $sce.trustAsResourceUrl(srcList[index]);
+            $scope.playSrc2 = $sce.trustAsResourceUrl(srcList[index + 1]);
+        }
+
+    }
+
     $http({
         method: 'get',
         url: '/mdata?id='+srcId+'/'
     })
     .success(function(data){
-        var data = data, src;
+        var data = data;
+
 
         if(data.play_list.length == 0){
             $scope.noSrc = true;
@@ -58,21 +71,33 @@ function playCtrl($scope, $http, $routeParams, $sce){
             return;
         }
 
+
         for(var i = 0; i < data.play_list.length; i++){
             if(data.play_list[i].name == 'PPS')   continue;
             if(data.play_list[i].sources.length == 0) continue;
-            src = data.play_list[i].sources[0];
-            break;
+            if(data.play_list[i].sources.length == 1){
+                src = data.play_list[i].sources[0];
+                break;
+            }
+            if(data.play_list[i].sources.length > 1){
+                srcList = data.play_list[i].sources;
+                break;
+            }
         }
-
+        console.log('srcList1', srcList[0]);
+        console.log('srclist2', srcList[1]);
         if(src){
-
+            console.log('src', src);
             $scope.hasMp4 = true;
-            $scope.playSrc = $sce.trustAsResourceUrl(src);
+            $scope.playSrc1 = $sce.trustAsResourceUrl(src);
+        }else if(srcList){
+            index = 0;
+            $scope.hasMp4 = true;
+            $scope.playSrc1 = $sce.trustAsResourceUrl(srcList[0]);
+            $scope.playSrc2 = $sce.trustAsResourceUrl(srcList[1]);
         }else{
-            $scope.noVideo = true
+            $scope.noVideo = true;
         }
-
     })
 
 }

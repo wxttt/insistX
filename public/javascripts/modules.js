@@ -7,7 +7,8 @@
 (function(window, angular){
     var videoEvents = angular.module('videoEvents', []),
         Events = [
-            'ngCanPlayThrough:canplaythrough'
+            'ngCanPlayThrough:canplaythrough',
+            'ngEnded:ended'
         ];
 
     angular.forEach(Events, function(name){
@@ -24,22 +25,21 @@
                             scope.$apply(function() {
                                 expr(scope, {$event: event});
                             });
-                        },
-                        opts = $parse(attr['hmOptions'])(scope, {});
+                        };
 
                     element.bind(eventName, fn);
 
                     // unbind Hammer touch event
-                    scope.$on('$destroy', function(){
-                        hammer.off(eventName, fn);
-                    });
+                    //scope.$on('$destroy', function(){
+                    //    hammer.off(eventName, fn);
+                    //});
 
                 }
             };
         }]);
     });
 
-})(window, window.angular, window.Hammer);
+})(window, window.angular);
 
 
 
