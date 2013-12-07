@@ -45,7 +45,7 @@ html(ng-app="tvApp")
 				</div>
 			</div>
 		script(type="text/ng-template", id="play").
-			<video class="m-video-1" controls autoplay ng-if="hasMp4" ng-src="{{playSrc1}}" ng-ended="ended($event)" ng-can-play-through="canPlayThrough($event)"></video>
+			<video class="m-video-1" autoplay ng-if="hasMp4" ng-src="{{playSrc1}}" ng-ended="ended($event)" ng-can-play-through="canPlayThrough($event)"></video>
 			<video class="m-video-2" preload="auto" ng-src="{{playSrc2}}"></video>
 			<h1 ng-if = "noSrc">你播放的资源不存在</h1>
 			<div class="m-spin" ng-if = "loading">
