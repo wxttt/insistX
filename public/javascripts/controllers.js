@@ -84,8 +84,7 @@ function playCtrl($scope, $http, $routeParams, $sce){
                 break;
             }
         }
-        console.log('srcList1', srcList[0]);
-        console.log('srclist2', srcList[1]);
+
         if(src){
             console.log('src', src);
             $scope.hasMp4 = true;
